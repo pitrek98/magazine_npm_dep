@@ -17720,7 +17720,7 @@ var render = function render() {
 
   return _c(vuetify_lib_components_VApp__WEBPACK_IMPORTED_MODULE_0__["default"], [_c(vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_1__["default"], {
     staticClass: "primary"
-  }, [_vm._v("test")])], 1);
+  }, [_vm._v("CZY DZIAŁA")])], 1);
 };
 
 var staticRenderFns = [];

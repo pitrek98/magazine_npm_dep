@@ -4,6 +4,7 @@ use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\Categories\CategoryController;
 use App\Http\Controllers\Items\ItemController;
 use App\Http\Controllers\Items\ItemsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/{any}', function () {
     return view('welcome');
-});
+})->where("any", ".*");
 
 Route::get('/oskarkoks', function () {
     return response()->json(['message' => "Wiadomość"]);
