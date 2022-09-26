@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Categories;
 
 use App\Http\Controllers\Controller;
+use App\Models\Items\Category;
 use App\Services\Categories\CategoryService;
 use Illuminate\Http\Request;
 
@@ -15,26 +16,20 @@ class CategoryController extends Controller
         $this->categoryService = $categoryService;
     }
 
+    public function update($id, Request $request)
+    {
+        $newCategory = $request->get("category");
+        $this->categoryService->update($id, $newCategory);
+    }
+
     public function create(Request $request)
     {
-        $category = $request->get('category');
+        $category = $request->get("category");
         $this->categoryService->create($category);
-    }
-    public function get($id)
-    {
-        $category = $this->categoryService->get($id);
-        return response()->json(['category' => $category]);
     }
 
     public function destroy($id)
     {
         $this->categoryService->destroy($id);
-        return response()->json(['message' => 'Prawiłowow usunięto kategorię o id ' . $id]);
-    }
-    public function update(Request $request, $id)
-    {
-        $category = $request->get('category');
-        $this->categoryService->update($category, $id);
-        return response()->json(['message' => 'Prawidłowo zaaktualiowano kategorie o id ' . $id]);
     }
 }

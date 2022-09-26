@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Items;
 
 use App\Http\Controllers\Controller;
-use App\Services\Items\ItemService;
 use Illuminate\Http\Request;
+use App\Services\Items\ItemService;
+
 
 class ItemController extends Controller
 {
@@ -14,25 +15,21 @@ class ItemController extends Controller
     {
         $this->itemService = $itemService;
     }
+
+    public function update($id, Request $request)
+    {
+        $item = $request->get("item");
+        $this->itemService->update($id, $item);
+    }
+
     public function create(Request $request)
     {
-        $item = $request->get('item');
+        $item = $request->get("item");
         $this->itemService->create($item);
     }
-    public function get($id)
-    {
-        $item = $this->itemService->get($id);
-        return response()->json(['item' => $item]);
-    }
+
     public function destroy($id)
     {
         $this->itemService->destroy($id);
-        return response()->json(['message' => 'Item usunięty pomyśle']);
-    }
-    public function update(Request $request, $id)
-    {
-        $item = $request->get('item');
-        $this->itemService->update($item, $id);
-        return response()->json(['message' => 'Prawidłowo zaaktualizowano Item']);
     }
 }

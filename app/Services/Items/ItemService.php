@@ -6,27 +6,33 @@ use App\Models\Items\Item;
 
 class ItemService
 {
+
     public Item $itemModel;
+
     public function __construct(Item $itemModel)
     {
         $this->itemModel = $itemModel;
     }
-    public function create($newItem)
-    {
-        return $this->itemModel::create($newItem);
-    }
+
     public function get($id)
     {
         $item = $this->itemModel->find($id);
         return $item;
     }
-    public function destroy($id)
-    {
-        return $this->itemModel->destroy($id);
-    }
-    public function update($newItem, $id)
+
+    public function update($id, $newItem)
     {
         $item = $this->get($id);
-        return $item->update($newItem);
+        $item->update($newItem);
+    }
+
+    public function create($newItem)
+    {
+        $this->itemModel::create($newItem);
+    }
+
+    public function destroy($id)
+    {
+        $this->itemModel->destroy($id);
     }
 }
