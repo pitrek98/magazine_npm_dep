@@ -1,5 +1,6 @@
 <template>
     <v-container>
+        <Create />
         Items
         <template>
             <v-simple-table>
@@ -36,7 +37,9 @@
 
 <script>
 import store from "../../store/index"
+import Create from "./Create"
 export default {
+    components: { Create },
     computed: {
         items() {
             return store.getters.getItems;
